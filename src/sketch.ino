@@ -1,3 +1,5 @@
+const float RL_SCALE = 0.75;
+
 const int R_FORWARD = 3;
 const int R_REVERSE = 5;
 const int L_FORWARD = 6;
