@@ -1,4 +1,4 @@
-const float RL_SCALE = 0.75;
+#define DEBUG 1
 
 const int R_FORWARD = 3;
 const int R_REVERSE = 5;
@@ -31,19 +31,13 @@ void read_commands() {
                 char* direction = strtok(NULL, ",");
                 int speed = atoi(strtok(NULL, ","));
 
-                Serial.print("Driving ");
-                Serial.print(direction);
-                Serial.print(" at speed ");
-                Serial.println(speed);
                 drive(direction, speed);
             }
             else if (strcmp(token, "stop") == 0) {
-                Serial.println("Stopping");
                 stop();
             }
             else {
-                Serial.print("Bad command: ");
-                Serial.println(token);
+                log("Bad command");
             }
 
             // Clear buffer
@@ -105,4 +99,10 @@ void stop() {
     analogWrite(L_REVERSE, 0);
     analogWrite(R_FORWARD, 0);
     analogWrite(R_REVERSE, 0);
+}
+
+void log(String message) {
+    if (DEBUG) {
+        Serial.print(message);
+    }
 }
