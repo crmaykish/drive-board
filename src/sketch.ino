@@ -1,3 +1,5 @@
+#include <Servo.h>
+
 #define DEBUG 1
 
 const int L_ENABLE = 4;
@@ -7,6 +9,15 @@ const int L_REVERSE = 6;
 const int R_ENABLE = 2;
 const int R_FORWARD = 5;
 const int R_REVERSE = 3;
+
+const int pan_servo = 11;
+const int tilt_servo = 10;
+
+const int pan_center = 86;
+const int tilt_center = 113;
+
+Servo pan;
+Servo tilt;
 
 // Serial buffer
 const int COMMAND_LENGTH = 16;
@@ -18,10 +29,24 @@ void setup() {
 
     digitalWrite(L_ENABLE, HIGH);
     digitalWrite(R_ENABLE, HIGH);
+
+    pan.attach(pan_servo);
+    tilt.attach(tilt_servo);
+
+    pan.write(pan_center);
+    tilt.write(tilt_center);
+
+    delay(100);
+
+    pan.detach();
+    tilt.detach();
+
+    digitalWrite(pan_servo, LOW);
+    digitalWrite(tilt_servo, LOW);
 }
 
 void loop() {
-    read_commands();
+    // read_commands();
 }
 
 void read_commands() {
