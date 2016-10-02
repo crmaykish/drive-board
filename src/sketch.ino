@@ -1,12 +1,12 @@
 #define DEBUG 1
 
-const int L_ENABLE = 2;
-const int L_FORWARD = 3;
-const int L_REVERSE = 5;
+const int L_ENABLE = 4;
+const int L_FORWARD = 9;
+const int L_REVERSE = 6;
 
-const int R_ENABLE = 4;
-const int R_FORWARD = 6;
-const int R_REVERSE = 9;
+const int R_ENABLE = 2;
+const int R_FORWARD = 5;
+const int R_REVERSE = 3;
 
 // Serial buffer
 const int COMMAND_LENGTH = 16;
