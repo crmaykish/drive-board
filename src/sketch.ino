@@ -1,9 +1,12 @@
 #define DEBUG 1
 
-const int R_FORWARD = 3;
-const int R_REVERSE = 5;
-const int L_FORWARD = 6;
-const int L_REVERSE = 9;
+const int L_ENABLE = 2;
+const int L_FORWARD = 3;
+const int L_REVERSE = 5;
+
+const int R_ENABLE = 4;
+const int R_FORWARD = 6;
+const int R_REVERSE = 9;
 
 // Serial buffer
 const int COMMAND_LENGTH = 16;
@@ -12,6 +15,9 @@ char serial_buffer_size = 0;
 
 void setup() {
     Serial.begin(115200);
+
+    digitalWrite(L_ENABLE, HIGH);
+    digitalWrite(R_ENABLE, HIGH);
 }
 
 void loop() {
@@ -31,13 +37,15 @@ void read_commands() {
                 char* direction = strtok(NULL, ",");
                 int speed = atoi(strtok(NULL, ","));
 
+                log("drive\n\r");
                 drive(direction, speed);
             }
             else if (strcmp(token, "stop") == 0) {
+                log("stop\n\r");
                 stop();
             }
             else {
-                log("Bad command");
+                log("Bad command\n\r");
             }
 
             // Clear buffer
