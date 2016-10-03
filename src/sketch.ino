@@ -40,8 +40,8 @@ void setup() {
     digitalWrite(L_ENABLE, HIGH);
     digitalWrite(R_ENABLE, HIGH);
     
-    init_servos();
-    stop_servos();
+    // init_servos();
+    // stop_servos();
 }
 
 void loop() {
